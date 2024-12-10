@@ -1,0 +1,28 @@
+
+services:
+  db:
+    image: postgres:17
+    container_name: db
+    environment:
+      POSTGRES_USER: library_api
+      POSTGRES_PASSWORD: library_api
+      POSTGRES_DB: library_api_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - psqldata:/var/lib/postgresql/data/
+  web:
+    build: ./src
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    volumes:
+      - ./src/:/usr/src/app/
+    ports:
+      - 8002:8000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://library_api:library_api@db/library_api_db
+
+volumes:
+  psqldata:
+    name: psqldata
