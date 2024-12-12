@@ -3,7 +3,7 @@ from datetime import date
 from sqlalchemy import Integer, String, Date, ForeignKey, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.ext.asyncio import AsyncAttrs
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 class Author(Base):
     first_name: Mapped[str]
@@ -26,7 +26,7 @@ class Author(Base):
 
 class Book(Base):
     title: Mapped[str]
-    descriprion: Mapped[str]
+    description: Mapped[str]
     author_id: Mapped[int] = mapped_column(ForeignKey('authors.id'))
     count: Mapped[int] = mapped_column(default=0)
     author: Mapped["Author"] = relationship(
@@ -51,27 +51,3 @@ class Borrow(Base):
     )
 
 
-class AuthorAddSchema(BaseModel):
-    first_name: str | None = None
-    last_name: str | None = None
-    date_of_birth: date | None = None
-
-class AuthorSchema(AuthorAddSchema):
-        id: int
-
-
-
-
-class BookSchema(BaseModel):
-        id: int
-        title: str
-        description: str
-        author_id: int
-        count: int
-
-class BorrowSchema(BaseModel):
-        id: int
-        book_id: int
-        name: str
-        borrow_date: date
-        return_date: date

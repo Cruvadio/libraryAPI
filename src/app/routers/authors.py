@@ -1,17 +1,15 @@
-from datetime import date
+from app.schemas import AuthorSchema, AuthorAddSchema
+from app.database import async_session_maker
+from app.dao import AuthorDAO
+from fastapi import APIRouter, status
 
-from .models import AuthorSchema, AuthorAddSchema
-from .database import async_session_maker
-from .dao import AuthorDAO
-from fastapi import APIRouter
-from pydantic import create_model
 
 router_authors = APIRouter(prefix='/authors', tags=['Работа с авторами'])
-@router_authors.post("/")
+@router_authors.post("/", summary="Добавление нового автора в базу данных.", status_code=status.HTTP_201_CREATED)
 async def add_author(author_data: AuthorAddSchema):
     async with async_session_maker() as session:
         new_author = await AuthorDAO.add(session, **author_data.dict())
-        return {"message": "Author added succesfully", "author": new_author}
+        return {"message": "Author added successfully", "author": new_author}
 
 @router_authors.get("/", summary="Получить всех авторов", response_model=list[AuthorSchema])
 async def get_authors()-> list[AuthorSchema]:
@@ -33,5 +31,5 @@ async def update_author_info(id: int, author_data: AuthorAddSchema) -> AuthorSch
 async def delete_author(id: int):
     async with async_session_maker() as session:
         await AuthorDAO.delete_one_by_id(session=session, data_id=id)
-        return {"message": "Author removed successfuly"}
+        return {"message": "Author removed successfully"}
 

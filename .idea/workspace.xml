@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3d95e7d-776d-4751-a87d-20f91c2d4cce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/LibraryAPI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/authors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/dao.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/database.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tests/__init__.py" afterDir="false" />
+    <list default="true" id="f3d95e7d-776d-4751-a87d-20f91c2d4cce" name="Changes" comment="Created LibraryAPI for interaction with LibraryDB&#10;+ made &quot;authors&quot; entrypoints in RESTAPI (post, get, put, delete)&#10;+ added PostreSQL support&#10;+ added docker-compose.yml for building the services">
+      <change afterPath="$PROJECT_DIR$/src/app/routers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/routers/books.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/routers/borrows.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/schemas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/test_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/authors.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routers/authors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/dao.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/dao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,17 +43,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.docker-compose.yml.db: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.postgres: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.web: Compose Deployment.executor": "Run",
-    "Docker.src/Dockerfile.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.docker-compose.yml.db: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.web: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.src/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ialex\PycharmProjects\LibraryAPI\src\app\routers" />
+    </key>
+  </component>
   <component name="RunManager" selected="Docker.docker-compose.yml.web: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
@@ -66,7 +68,17 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yml.db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -119,6 +131,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml.web: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.src/Dockerfile" />
         <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
@@ -141,6 +154,19 @@
       <option name="presentableId" value="Default" />
       <updated>1733761543517</updated>
     </task>
+    <task id="LOCAL-00001" summary="Created LibraryAPI for interaction with LibraryDB&#10;+ made &quot;authors&quot; entrypoints in RESTAPI (post, get, put, delete)&#10;+ added PostreSQL support&#10;+ added docker-compose.yml for building the services">
+      <option name="closed" value="true" />
+      <created>1733859609118</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733859609118</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created LibraryAPI for interaction with LibraryDB&#10;+ made &quot;authors&quot; entrypoints in RESTAPI (post, get, put, delete)&#10;+ added PostreSQL support&#10;+ added docker-compose.yml for building the services" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created LibraryAPI for interaction with LibraryDB&#10;+ made &quot;authors&quot; entrypoints in RESTAPI (post, get, put, delete)&#10;+ added PostreSQL support&#10;+ added docker-compose.yml for building the services" />
   </component>
 </project>
